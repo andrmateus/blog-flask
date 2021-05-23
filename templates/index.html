@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Listagem de Produtos</title>
+    <title>Blog</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css')}}">
+    <script>
+        function esconderCampo() {
+           this.style.display = 'none';
+        }
+    </script>
 </head>
-<body>
-    <h1>Blog de Qualquer Coisa</h1>
+<body id='main' name="main">
+    <h1 id='title'>Blog de Teste</h1>
     <form action="/novotopico">
         <input type="submit" value="Novo Topico">
     </form>
@@ -21,14 +27,14 @@
                 <td>{{r[2]}}</td>
                 <td>
                     <form method="POST" action="/apagatopico">         
-                        <input type="submit" value="apagar">
-                        <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" style="visibility: hidden;">
+                        <input type="submit" value="Apagar">
+                        <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
                     </form>
                 </td>
                 <td>
                     <form method="POST" action="/alteratopico">
-                        <input type="submit" value="alterar">
-                        <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" style="visibility: hidden;"
+                        <input type="submit" value="Alterar">
+                        <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
                     </form>
                 </td>
             <tr>
