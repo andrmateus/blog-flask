@@ -1,4 +1,4 @@
-from sqlite3.dbapi2 import register_converter
+from sqlite3.dbapi2 import connect, register_converter
 import bibliotecas as b
 
 db = 'database/db-blog.db'
@@ -48,3 +48,7 @@ def delete(id):
         conn.commit()
     finally:
         conn.close()
+
+def selectCamp(id):
+    
+    return 
