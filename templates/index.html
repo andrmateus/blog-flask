@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <title>Blog</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+
     <script>
         function esconderCampo() {
            this.style.display = 'none';
@@ -11,35 +13,42 @@
     </script>
 </head>
 <body id='main' name="main">
-    <h1 id='title'>Blog de Teste</h1>
-    <form action="/novotopico">
-        <input type="submit" value="Novo Topico">
-    </form>
-    <table border="1">
-        <tr>
-            <td>Topico</td>
-            <td>Data de postagem</td>
-        <tr>
-
-        {% for r in regs %}
+    <div name='box-central' style="background-color: white; width: 900px; margin: 0px auto 100px auto; padding: 20px;">
+        <h1 id='title' style="text-align: center;">Blog do Mateus (Trabalho)</h1>
+        <form action="/novotopico">
+            <input type="submit" value="Novo Topico">
+        </form>
+        <table style="margin: auto; border: 1px solid black;">
             <tr>
-                <td>{{r[1]}}</td>
-                <td>{{r[2]}}</td>
-                <td>
-                    <form method="POST" action="/apagatopico">         
-                        <input type="submit" value="Apagar">
-                        <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
-                    </form>
-                </td>
-                <td>
-                    <form method="POST" action="/alteratopico">
-                        <input type="submit" value="Alterar">
-                        <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
-                    </form>
-                </td>
+                <td>Topico</td>
             <tr>
-        {% endfor %}
 
-    </table>
+            {% for r in regs %}
+                <tr>
+                    <td>
+                        <textarea disabled>
+                            {{r[1]}}
+                        </textarea>
+                        <span style="text-align: right; float: left;">
+                            Data da postagem: {{r[2]}}
+                        </span>
+                        <span style="float: right;">
+                            <form method="POST" action="/apagatopico">         
+                                <input type="submit" value="Apagar">
+                                <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
+                            </form>
+                        </span>
+                        <span style="float: right;">
+                            <form method="POST" action="/alteratopico">
+                                <input type="submit" value="Alterar">
+                                <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
+                            </form>
+                        </span>
+                    </td>
+                <tr>
+            {% endfor %}
+
+        </table>
+    </div>
 </body>
-</html>
+</html> 

@@ -3,11 +3,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css')}}">
 </head>
 <body>
-    <div id=novoTopico>
+    <div style="width: 500px; background-color: white; height: 380px; padding: 10px; margin-left: auto; margin-right: auto; text-align: center;">
+        <h2 style="text-align: center;">Novo Topico</h2>
         <form method="POST" action="/">
-            <label>Novo Topico:</label>
-            <input type="text" name="descricao" id="descricao">
-            <input type="submit" value="Cadastrar">
+            <textarea type="text" name="descricao" id="descricao" rows="10" cols="60"></textarea>
+        </br>
+            <input type="submit" value="Postar" style="margin-top:20px; background-color: #cecece; box-shadow: 1px 1px 0.1px;">
         </form>
     </div>
 </body>

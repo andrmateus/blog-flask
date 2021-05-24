@@ -3,6 +3,7 @@ import bibliotecas as b
 import banco
 
 blog = b.Flask(__name__)
+blog.static_folder = 'static'
 
 @blog.route('/', methods=['GET','POST'])
 
@@ -29,6 +30,7 @@ def apagar():
         banco.delete(idtopico)
         print('apagado')
     return b.render_template("apaga.html")
-        
+
+
 if __name__ == '__main__':
     blog.run()
