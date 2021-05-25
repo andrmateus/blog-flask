@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <title>Blog</title>
@@ -7,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 
 </head>
+
 <body class="p-3 mb-2 bg-primary text-white">
     <div class=container>
         <div class="p-3 mb-2 bg-light text-dark">
@@ -21,39 +23,39 @@
                     <tr>
                 </div>
                 {% for r in regs %}
-                    <div class="card" style="width: 600px;">
-                        <span class="border">
-        
-        
-                                <tr>
-                                    <td>
-                                    <div class="card-body">
-                                        <div class="card-text" disabled>
-                                            {{r[1]}}
-                                        </div>
-        
-                                        <span>
-                                            Data da postagem: {{r[2]}}
-                                        </span>
-                                        <span>
-                                            <form method="POST" action="/apagatopico">
-                                                <input type="submit" value="Apagar" class="btn btn-danger">
-                                                <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden >
-                                            </form>
-                                        </span>
-                                        <span>
-                                            <form method="POST" action="/alteratopico">
-                                                <input type="submit" value="Alterar" class="btn btn-secondary">
-                                                <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
-                                            </form>
-                                        </span>
+                <div class="card" style="width: 600px;">
+                    <span class="border">
+                        <tr>
+                            <td>
+                                <div class="card-body">
+                                    <div class="card-text" disabled>
+                                        {{r[1]}}
                                     </div>
-                                </td>
-                            <tr>
-                    </span>        </div>
+
+                                    <span>
+                                        Data da postagem: {{r[2]}}
+                                    </span>
+                                    <span>
+                                        <form method="POST" action="/apagatopico">
+                                            <input type="submit" value="Apagar" class="btn btn-danger">
+                                            <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
+                                        </form>
+                                    </span>
+                                    <span>
+                                        <form method="POST" action="/alteratopico">
+                                            <input type="submit" value="Alterar" class="btn btn-secondary">
+                                            <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
+                                        </form>
+                                    </span>
+                                </div>
+                            </td>
+                        <tr>
+                    </span>
+                </div>
                 {% endfor %}
             </table>
         </div>
     </div>
 </body>
-</html> 
+
+</html>

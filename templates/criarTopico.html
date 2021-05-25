@@ -1,13 +1,15 @@
 <!DOCTYPE html>
+
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css')}}">
 </head>
+
 <body>
     <div id='box-central'>
         <h2>Novo Topico</h2>
         <form method="POST" action="/">
             <textarea type="text" name="descricao" id="descricao"></textarea>
-        </br>
+            </br>
             <input type="submit" value="Postar">
             <button onclick="href='/'">Voltar</button>
         </form>
