@@ -33,4 +33,4 @@ def apagar():
 
 
 if __name__ == '__main__':
-    blog.run()
+    blog.run(debug="yes")

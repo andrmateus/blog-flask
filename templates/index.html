@@ -4,51 +4,56 @@
     <meta charset="UTF-8">
     <title>Blog</title>
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 
-    <script>
-        function esconderCampo() {
-           this.style.display = 'none';
-        }
-    </script>
 </head>
-<body id='main' name="main">
-    <div name='box-central' style="background-color: white; width: 900px; margin: 0px auto 100px auto; padding: 20px;">
-        <h1 id='title' style="text-align: center;">Blog do Mateus (Trabalho)</h1>
-        <form action="/novotopico">
-            <input type="submit" value="Novo Topico">
-        </form>
-        <table style="margin: auto; border: 1px solid black;">
-            <tr>
-                <td>Topico</td>
-            <tr>
-
-            {% for r in regs %}
-                <tr>
-                    <td>
-                        <textarea disabled>
-                            {{r[1]}}
-                        </textarea>
-                        <span style="text-align: right; float: left;">
-                            Data da postagem: {{r[2]}}
-                        </span>
-                        <span style="float: right;">
-                            <form method="POST" action="/apagatopico">         
-                                <input type="submit" value="Apagar">
-                                <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
-                            </form>
-                        </span>
-                        <span style="float: right;">
-                            <form method="POST" action="/alteratopico">
-                                <input type="submit" value="Alterar">
-                                <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
-                            </form>
-                        </span>
-                    </td>
-                <tr>
-            {% endfor %}
-
-        </table>
+<body class="p-3 mb-2 bg-primary text-white">
+    <div class=container>
+        <div class="p-3 mb-2 bg-light text-dark">
+            <h1 id='title'>Blog do Mateus (Trabalho)</h1>
+            <form action="/novotopico">
+                <input type="submit" value="Novo Topico" class="btn btn-primary">
+            </form>
+            <table>
+                <div class="title">
+                    <tr>
+                        <td>Topico</td>
+                    <tr>
+                </div>
+                {% for r in regs %}
+                    <div class="card" style="width: 600px;">
+                        <span class="border">
+        
+        
+                                <tr>
+                                    <td>
+                                    <div class="card-body">
+                                        <div class="card-text" disabled>
+                                            {{r[1]}}
+                                        </div>
+        
+                                        <span>
+                                            Data da postagem: {{r[2]}}
+                                        </span>
+                                        <span>
+                                            <form method="POST" action="/apagatopico">
+                                                <input type="submit" value="Apagar" class="btn btn-danger">
+                                                <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden >
+                                            </form>
+                                        </span>
+                                        <span>
+                                            <form method="POST" action="/alteratopico">
+                                                <input type="submit" value="Alterar" class="btn btn-secondary">
+                                                <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
+                                            </form>
+                                        </span>
+                                    </div>
+                                </td>
+                            <tr>
+                    </span>        </div>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 </body>
 </html> 
