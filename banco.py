@@ -3,12 +3,12 @@ import bibliotecas as b
 
 db = 'database/db-blog.db'
 dataCriacao = b.date.today()
-def insert(descricao):
+def insert(descricao, titulo):
     try:
         conn = b.sqlite3.connect(db)
-        sql = 'INSERT INTO topico (descricao, data) VALUES (?, ?)'
+        sql = 'INSERT INTO topico (descricao, data, titulo) VALUES (?, ?, ?)'
 
-        registro = (descricao, dataCriacao)
+        registro = (descricao, dataCriacao, titulo)
 
         cur = conn.cursor()
 

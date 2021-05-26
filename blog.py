@@ -10,8 +10,9 @@ blog.static_folder = 'static'
 def index():
     if b.request.method == 'POST':
         descricao = b.request.form['descricao']
+        titulo = b.request.form['titulo']
         
-        banco.insert(descricao)
+        banco.insert(descricao, titulo)
 
     return b.render_template('index.html', regs=banco.list())
 
