@@ -43,6 +43,8 @@ def delete(id):
         cur = conn.cursor()
         cur.execute(sql)
         conn.commit()
+    except b.Error as e:
+        return e
     finally:
         conn.close()
 
@@ -57,7 +59,8 @@ def selectCamp(id):
             descricao = r[0]
             titulo = r[1]
         return(descricao, titulo, id)
-        
+    except b.Error as e:
+        return e
     finally:
         conn.close()
 
@@ -69,5 +72,7 @@ def edita(titulo, descricao, id):
         cur = conn.cursor()
         cur.execute(sql, registro)
         conn.commit()
+    except b.Error as e:
+        return e
     finally:
         conn.close()
