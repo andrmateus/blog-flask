@@ -15,63 +15,76 @@
     <div class="container-sm">
         <div class="p-3 mb-2 bg-light text-dark">
 
-       <div class="container">
-          <div class="p-3 mb-2 bg-dark text-white" style="margin-top: -16px; margin-left: -28px; margin-right: -28px;">
-            <div class="container" style="margin-left: 150px;">
-                
-                <h1 id='title' style="font-family: 'Roboto Mono', monospace; font-size: 50px;">Blog do Mateus (Trabalho)</h1>
-                <form action="/novotopico" style="margin-top: 20px;">
-                    <input type="submit" value="Novo Topico" class="btn btn-primary">
-                </form>
-                
-            </div>
-          </div>
-       </div>
-            {% for r in regs %} <!-- INICIO DO FOR (CRIA OS CARDS) -->
-                <div class="card" style="width: 1000px; padding: 10px auto 0px auto; margin: 10px auto 10px auto;">
-                    <div class="card-body">
-                        <div class="card-header">
+            <div class="container">
+                <div class="p-3 mb-2 bg-dark text-white"
+                    style="margin-top: -16px; margin-left: -28px; margin-right: -28px;">
+                    <div class="container" style="margin-left: 150px;">
 
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col">
-                                       
-                                    </div>
-                                    <div class="col-md-auto">
-                                        Data da postagem: {{r[2]}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="card-title" style="text-align: center; margin: 10px;">
-                            {{r[3]}} <!--- TÍTULO  -->
-                        </h3>
-                        <p class="card-text" style="text-align: justify; margin-left: 30px; margin-right: 30px;">
-                            {{r[1]}} <!--- TEXTO  -->
-                        </p>
+                        <h1 id='title' style="font-family: 'Roboto Mono', monospace; font-size: 50px; padding: 10px;">
+                            Blog do Mateus (Trabalho)</h1>
+                        <form method='POST' action="/" style="margin-top: 20px;">
+                            <input type="text" value="create" name='operation' hidden>
+                            <input type="submit" value="Novo Topico" class="btn btn-primary">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            {% for r in regs %}
+            <!-- INICIO DO FOR (CRIA OS CARDS) -->
+            <div class="card" style="width: 1000px; padding: 10px auto 0px auto; margin: 10px auto 10px auto;">
+                <div class="card-body">
+                    <div class="card-header">
+
                         <div class="container">
                             <div class="row">
-                                <!--- botao de alterar  -->
-                                <div class="col" style="text-align: center;">
-                                    <form method="POST" action="/alteratopico">
-                                        <input type="submit" value="Alterar" class="btn btn-secondary">
-                                        <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
-                                    </form>
-                                </div>
-                                <!--- botao de apagar  -->
-                                <div class="col" style="text-align: center;">
-                                    <form method="POST" action="/apagatopico">
-                                        <input type="submit" value="Apagar" class="btn btn-danger">
-                                        <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
-                                    </form>
-                                </div>
+                                <div class="col">
 
+                                </div>
+                                <div class="col-md-auto">
+                                    Data da postagem: {{r[2]}}
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <h3 class="card-title" style="text-align: center; margin: 10px;">
+                        {{r[3]}}
+                        <!--- TÍTULO  -->
+                    </h3>
+
+                    <div class="form-group">
+                        <!--- TEXTO  -->
+                        <textarea class="form-control" rows="10" aria-label="size 3" disabled>
+                            {{r[1]}} 
+                        </textarea>
+                    </div>
+
+                    <div class="container">
+                        <div class="row" style="padding: 10px;">
+                            <!--- botao de alterar  -->
+                            <div class="col" style="text-align: center;">
+                                <form method="POST" action="/">                                                                                                            
+                                    <input type="text" name="operation" id="operation" value="edit" hidden>
+                                    <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
+                                    <input type="submit" value="Alterar" class="btn btn-secondary">
+                                </form>
+                            </div>
+                            <!--- botao de apagar  -->
+                            <div class="col" style="text-align: center;">
+                                <form method="POST" action="/" >
+                                    <input type="text" name="operation" id="operation" value="delete" hidden>
+                                    <input type="text" name="idtopico" id="idtopico" value="{{r[0]}}" hidden>
+                                    <input type="submit" value="Apagar" class="btn btn-danger" data-method=>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
+            </div>
             {% endfor %}
         </div>
     </div>
 </body>
+
 </html>

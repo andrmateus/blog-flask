@@ -40,15 +40,34 @@ def delete(id):
     try:
         conn = b.sqlite3.connect(db)
         sql = 'DELETE FROM topico WHERE idtopicos = %s' % id
-        registro = (id)
         cur = conn.cursor()
-
         cur.execute(sql)
-
         conn.commit()
     finally:
         conn.close()
 
 def selectCamp(id):
-    
-    return 
+    try:
+        conn = b.sqlite3.connect(db)
+        sql = 'SELECT descricao, titulo FROM topico WHERE idtopicos = %s' % id
+        cur = conn.cursor()
+        cur.execute(sql)
+        regs = cur.fetchall()
+        for r in regs:
+            descricao = r[0]
+            titulo = r[1]
+        return(descricao, titulo, id)
+        
+    finally:
+        conn.close()
+
+def edita(titulo, descricao, id):
+    try:
+        conn = b.sqlite3.connect(db)
+        sql = "update topico set titulo = ?, descricao = ? where idtopicos = ?"
+        registro = (titulo, descricao, id)
+        cur = conn.cursor()
+        cur.execute(sql, registro)
+        conn.commit()
+    finally:
+        conn.close()

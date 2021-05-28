@@ -7,22 +7,27 @@
 <body class="p-3 mb-2 bg-primary text-white">
     <div class="container-sm">
         <div class="p-3 mb-2 bg-light text-dark">
-            <h2>Novo Topico</h2>
+            <h2>Editando Topico</h2>
             <form method="POST" action="/">
                 <div class="mb-3">
                     <label for="título-topico" class="form-label">Título</label>
-                    <input type="text" name="titulo" id="titulo" class="form-control">
+                    <input type="text" name="tituloEditado" class="form-control" value="{{ regs[1] }}">
                 </div>
                 <div class="mb-3">
                     <label for="Texto do tópico" class="form-label">Conteúdo</label>
-                    <textarea type="text" name="descricao" id="descricao" class="form-control" rows="10"></textarea>
+                    <textarea type="text" name="descricaoEditada" class="form-control" rows="10">
+                        {{ regs[0] }}
+                    </textarea>
+                    <input type="text" name="idEditada" value="{{ regs[2] }}" hidden>
+                    <input type="text" name="operation" value="editing" hidden>
+                    <input type="text" name="descricaoAntiga" value="{{ regs[0] }}" hidden>
+                    <input type="text" name="tituloAntigo" value="{{ regs[1] }}" hidden>
                     
                 </div>
                 <div class="mb-3">
                     <input type="submit" value="Postar" class="btn btn-primary">
                     <button onclick="href='/'" class="btn btn-secondary">Voltar</button>
                 </div>
-                <input type="hidden" name="operation" value="put">
             </form>
         </div>
     </div>
