@@ -1,11 +1,14 @@
-from sqlite3.dbapi2 import connect, register_converter
 import bibliotecas as b
 
 db = 'database/db-blog.db'
+
 dataCriacao = b.date.today()
+
 def insert(descricao, titulo):
+
     try:
         conn = b.sqlite3.connect(db)
+
         sql = 'INSERT INTO topico (descricao, data, titulo) VALUES (?, ?, ?)'
 
         registro = (descricao, dataCriacao, titulo)
@@ -17,8 +20,11 @@ def insert(descricao, titulo):
         conn.commit()
 
     except b.Error as e:
+
         print(e)
+
     finally:
+
         conn.close()
 
 
@@ -39,13 +45,21 @@ def list():
 def delete(id):
     try:
         conn = b.sqlite3.connect(db)
+        
         sql = 'DELETE FROM topico WHERE idtopicos = %s' % id
+        
         cur = conn.cursor()
+        
         cur.execute(sql)
+        
         conn.commit()
+    
     except b.Error as e:
+    
         return e
+    
     finally:
+    
         conn.close()
 
 def selectCamp(id):

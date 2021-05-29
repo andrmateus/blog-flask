@@ -1,7 +1,6 @@
 from sqlite3.dbapi2 import connect
 from flask import Flask
 from flask import request
-import requests
 from flask import render_template
 
 from datetime import date
