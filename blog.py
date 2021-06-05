@@ -1,6 +1,6 @@
 
-import bibliotecas as b # chama o arquivo que contem as bibliotecas utilizadas
-import banco # chama o arquivo que contem as funções de banco
+from flaskr import bibliotecas as b # chama o arquivo que contem as bibliotecas utilizadas
+from flaskr import banco # chama o arquivo que contem as funções de banco
 
 
 blog = b.Flask(__name__)

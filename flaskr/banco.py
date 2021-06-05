@@ -1,4 +1,4 @@
-import bibliotecas as b
+from flaskr import bibliotecas as b
 
 db = 'database/db-blog.db'
 
