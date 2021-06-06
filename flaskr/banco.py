@@ -1,92 +1,93 @@
 from flaskr import bibliotecas as b
 
-db = 'database/db-blog.db'
+class db:
+    def __init__(self) -> None:
+        self.db = 'database/db-blog.db'
+        self.dataCriacao = b.date.today()
 
-dataCriacao = b.date.today()
+    def insert(self, descricao, titulo):
 
-def insert(descricao, titulo):
+        try:
+            conn = b.sqlite3.connect(self.db)
 
-    try:
-        conn = b.sqlite3.connect(db)
+            sql = 'INSERT INTO topico (descricao, data, titulo) VALUES (?, ?, ?)'
 
-        sql = 'INSERT INTO topico (descricao, data, titulo) VALUES (?, ?, ?)'
+            registro = (descricao, self.dataCriacao, titulo)
 
-        registro = (descricao, dataCriacao, titulo)
+            cur = conn.cursor()
 
-        cur = conn.cursor()
+            cur.execute(sql,registro)
 
-        cur.execute(sql,registro)
+            conn.commit()
 
-        conn.commit()
+        except b.Error as e:
 
-    except b.Error as e:
+            print(e)
 
-        print(e)
+        finally:
 
-    finally:
-
-        conn.close()
+            conn.close()
 
 
-def list():
-    try:
-        conn = b.sqlite3.connect(db)
-        sql = 'SELECT * FROM topico'
+    def list(self):
+        try:
+            conn = b.sqlite3.connect(self.db)
+            sql = 'SELECT * FROM topico'
 
-        cur = conn.cursor()
-        cur.execute(sql)
-        registros = cur.fetchall()
-        return registros
-    except b.Error as e:
-        return e
-    finally:
-        conn.close()
+            cur = conn.cursor()
+            cur.execute(sql)
+            registros = cur.fetchall()
+            return registros
+        except b.Error as e:
+            return e
+        finally:
+            conn.close()
 
-def delete(id):
-    try:
-        conn = b.sqlite3.connect(db)
+    def delete(self, id):
+        try:
+            conn = b.sqlite3.connect(self.db)
+            
+            sql = 'DELETE FROM topico WHERE idtopicos = %s' % id
+            
+            cur = conn.cursor()
+            
+            cur.execute(sql)
+            
+            conn.commit()
         
-        sql = 'DELETE FROM topico WHERE idtopicos = %s' % id
+        except b.Error as e:
         
-        cur = conn.cursor()
+            return e
         
-        cur.execute(sql)
+        finally:
         
-        conn.commit()
-    
-    except b.Error as e:
-    
-        return e
-    
-    finally:
-    
-        conn.close()
+            conn.close()
 
-def selectCamp(id):
-    try:
-        conn = b.sqlite3.connect(db)
-        sql = 'SELECT descricao, titulo FROM topico WHERE idtopicos = %s' % id
-        cur = conn.cursor()
-        cur.execute(sql)
-        regs = cur.fetchall()
-        for r in regs:
-            descricao = r[0]
-            titulo = r[1]
-        return(descricao, titulo, id)
-    except b.Error as e:
-        return e
-    finally:
-        conn.close()
+    def selectCamp(self, id):
+        try:
+            conn = b.sqlite3.connect(self.db)
+            sql = 'SELECT descricao, titulo FROM topico WHERE idtopicos = %s' % id
+            cur = conn.cursor()
+            cur.execute(sql)
+            regs = cur.fetchall()
+            for r in regs:
+                descricao = r[0]
+                titulo = r[1]
+            return(descricao, titulo, id)
+        except b.Error as e:
+            return e
+        finally:
+            conn.close()
 
-def edita(titulo, descricao, id):
-    try:
-        conn = b.sqlite3.connect(db)
-        sql = "update topico set titulo = ?, descricao = ? where idtopicos = ?"
-        registro = (titulo, descricao, id)
-        cur = conn.cursor()
-        cur.execute(sql, registro)
-        conn.commit()
-    except b.Error as e:
-        return e
-    finally:
-        conn.close()
+    def edita(titulo, descricao, id, self):
+        try:
+            conn = b.sqlite3.connect(self.db)
+            sql = "update topico set titulo = ?, descricao = ? where idtopicos = ?"
+            registro = (titulo, descricao, id)
+            cur = conn.cursor()
+            cur.execute(sql, registro)
+            conn.commit()
+        except b.Error as e:
+            return e
+        finally:
+            conn.close()
