@@ -1,13 +1,12 @@
 
-from flask import session
 from flaskr import bibliotecas as b # chama o arquivo que contem as bibliotecas utilizadas
-from flaskr.banco import db # chama o arquivo que contem as funções de banco
+from flaskr.banco import bank # chama o arquivo que contem as funções de banco
 
 
 blog = b.Flask(__name__)
 blog.static_folder = 'static'
 
-conexao = db()
+conexao = bank()
 
 # pagina principal
 @blog.route('/', methods=['GET','POST'])
@@ -49,7 +48,7 @@ def principal():
             tituloEditado = b.request.form['tituloEditado']
             descricaoAntiga = b.request.form['descricaoAntiga']
             tituloAntigo = b.request.form['tituloAntigo']
-            if (descricaoAntiga != descricaoEditada) or (tituloAntigo != tituloEditado):
+            if (descricaoAntiga != descricaoEditada) or (tituloAeditingntigo != tituloEditado):
                 conexao.edita(tituloEditado,descricaoEditada,idEditada)
             return b.render_template('index.html', regs=conexao.list())
 
@@ -64,4 +63,4 @@ def pagina_nao_encontrada(e):
 
 # inicia o programa
 if __name__ == '__main__':
-    blog.run(debug="yes")
+    blog.run(host="0.0.0.0", port=int("80"), debug=True)

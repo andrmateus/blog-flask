@@ -1,8 +1,8 @@
 from flaskr import bibliotecas as b
 
-class db:
+class bank:
     def __init__(self) -> None:
-        self.db = 'database/db-blog.db'
+        self.db = str('database/db-blog.db')
         self.dataCriacao = b.date.today()
 
     def insert(self, descricao, titulo):
@@ -45,22 +45,15 @@ class db:
 
     def delete(self, id):
         try:
-            conn = b.sqlite3.connect(self.db)
-            
+            conn = b.sqlite3.connect(self.db) 
             sql = 'DELETE FROM topico WHERE idtopicos = %s' % id
-            
             cur = conn.cursor()
-            
             cur.execute(sql)
-            
             conn.commit()
-        
+
         except b.Error as e:
-        
             return e
-        
         finally:
-        
             conn.close()
 
     def selectCamp(self, id):
@@ -79,7 +72,7 @@ class db:
         finally:
             conn.close()
 
-    def edita(titulo, descricao, id, self):
+    def edita(self, titulo, descricao, id):
         try:
             conn = b.sqlite3.connect(self.db)
             sql = "update topico set titulo = ?, descricao = ? where idtopicos = ?"
