@@ -9,23 +9,14 @@ class bank:
 
         try:
             conn = b.sqlite3.connect(self.db)
-
             sql = 'INSERT INTO topico (descricao, data, titulo) VALUES (?, ?, ?)'
-
             registro = (descricao, self.dataCriacao, titulo)
-
             cur = conn.cursor()
-
             cur.execute(sql,registro)
-
             conn.commit()
-
         except b.Error as e:
-
             print(e)
-
         finally:
-
             conn.close()
 
 
@@ -33,7 +24,6 @@ class bank:
         try:
             conn = b.sqlite3.connect(self.db)
             sql = 'SELECT * FROM topico'
-
             cur = conn.cursor()
             cur.execute(sql)
             registros = cur.fetchall()
@@ -50,7 +40,6 @@ class bank:
             cur = conn.cursor()
             cur.execute(sql)
             conn.commit()
-
         except b.Error as e:
             return e
         finally:

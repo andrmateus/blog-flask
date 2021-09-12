@@ -63,4 +63,4 @@ def pagina_nao_encontrada(e):
 
 # inicia o programa
 if __name__ == '__main__':
-    blog.run(host="0.0.0.0", port=int("80"), debug=True)
+    blog.run(host="0.0.0.0", port=int("8080"), debug=True)
